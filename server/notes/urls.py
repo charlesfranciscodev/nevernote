@@ -7,7 +7,9 @@ urlpatterns = [
     path('users/', views.UserListView.as_view()),
     path('users/<int:pk>/', views.UserDetail.as_view()),
     path('rest-auth/', include('rest_auth.urls')),
-    path('rest-auth/registration', include('rest_auth.registration.urls'))
+    path('rest-auth/registration', include('rest_auth.registration.urls')),
+    path('notebooks/', views.NotebookListCreateView.as_view()),
+    path('notebooks/<int:pk>/', views.NotebookDetail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

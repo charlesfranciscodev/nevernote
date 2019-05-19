@@ -6,11 +6,15 @@ A note taking web application with a "WYSIWYG" editor, notebooks, tags, favorite
 
 ### Users
 * **GET** `/users/`
-* **POST** `/rest-auth/registration`
+* **POST** `/rest-auth/registration/`
 * **POST** `/rest-auth/login/`
-* **GET** `/users/{:id}`
+* **GET** `/users/{:id}/`
 * **PUT** `/users/{:id}/`
 * **DELETE** `/users/{:id}`
+
+### Notebooks
+* **GET** `/notebooks/`
+
 
 ## Completed User Stories
 
