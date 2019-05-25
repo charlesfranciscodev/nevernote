@@ -5,10 +5,18 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import BasePermission, IsAuthenticated, IsAdminUser
 
 
-class IsUser(BasePermission):
+class IsSameUser(BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.user:
             return obj == request.user
+        return False
+
+
+class IsOwner(BasePermission):
+    """ Checks that the note's notebook belongs to the current user."""
+    def has_object_permission(self, request, view, obj):
+        if request.user:
+            return obj.notebook.user == request.user
         return False
 
 
@@ -21,7 +29,7 @@ class UserListView(generics.ListAPIView):
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsUser,)
+    permission_classes = (IsSameUser,)
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
@@ -36,12 +44,10 @@ class NotebookListCreateView(generics.ListCreateAPIView):
         This view should return a list of all the notebooks
         for the currently authenticated user.
         """
-        return Notebook.objects.filter(author=self.request.user)
+        return Notebook.objects.filter(user=self.request.user)
 
     def pre_save(self, obj):
-        import sys
         obj.user = self.request.user
-        print(obj.title, obj.user, file=sys.stderr)
 
 
 class NotebookDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -54,25 +60,47 @@ class NotebookDetail(generics.RetrieveUpdateDestroyAPIView):
         This view should return a list of all the notebooks
         for the currently authenticated user.
         """
-        return Notebook.objects.filter(author=self.request.user)
+        return Notebook.objects.filter(user=self.request.user)
 
 
-class NoteDetail(generics.RetrieveUpdateDestroyAPIView):
+class NoteCreateView(generics.CreateAPIView):
     authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsOwner,)
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
 
 
-class TagListView(generics.ListAPIView):
+class NoteDetail(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsOwner,)
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer
+
+
+class TagListCreateView(generics.ListCreateAPIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
-    queryset = Tag.objects.all()
     serializer_class = TagSerializer
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the notebooks
+        for the currently authenticated user.
+        """
+        return Tag.objects.filter(user=self.request.user)
+
+    def pre_save(self, obj):
+        obj.user = self.request.user
 
 
 class TagDetail(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
-    queryset = Tag.objects.all()
     serializer_class = TagSerializer
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the notebooks
+        for the currently authenticated user.
+        """
+        return Tag.objects.filter(user=self.request.user)

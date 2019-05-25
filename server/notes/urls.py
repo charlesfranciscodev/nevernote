@@ -10,6 +10,10 @@ urlpatterns = [
     path('rest-auth/registration', include('rest_auth.registration.urls')),
     path('notebooks/', views.NotebookListCreateView.as_view()),
     path('notebooks/<int:pk>/', views.NotebookDetail.as_view()),
+    path('notes/', views.NoteCreateView.as_view()),
+    path('notes/<int:pk>/', views.NoteDetail.as_view()),
+    path('tags/', views.TagListCreateView.as_view()),
+    path('tags/<int:pk>/', views.TagDetail.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

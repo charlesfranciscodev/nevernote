@@ -9,14 +9,18 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class TagSerializer(serializers.ModelSerializer):
+    notes = serializers.PrimaryKeyRelatedField(
+        queryset=Note.objects.all(), many=True
+    )
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
     class Meta:
         model = Tag
-        fields = ("id", "name")
+        fields = ("id", "name", "notes", "user")
 
 
 class NoteSerializer(serializers.ModelSerializer):
-    tags = TagSerializer(many=True)
-
     class Meta:
         model = Note
         fields = ("id", "title", "content", "creation_date_time", "last_updated_date_time", "favorite", "notebook", "tags")

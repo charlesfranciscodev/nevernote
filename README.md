@@ -14,7 +14,23 @@ A note taking web application with a "WYSIWYG" editor, notebooks, tags, favorite
 
 ### Notebooks
 * **GET** `/notebooks/`
+* **POST** `/notebooks/`
+* **GET** `/notebooks/{:id}/`
+* **PUT** `/notebooks/{:id}/`
+* **DELETE** `/notebooks/{:id}/`
 
+### Notes
+* **POST** `/notes/`
+* **GET** `/notes/{:id}/`
+* **PUT** `/notes/{:id}/`
+* **DELETE** `/notes/{:id}/`
+
+### Tags
+* **GET** `/tags/`
+* **POST** `/tags/`
+* **GET** `/tags/{:id}/`
+* **PUT** `/tags/{:id}/`
+* **DELETE** `/tags/{:id}/`
 
 ## Completed User Stories
 
