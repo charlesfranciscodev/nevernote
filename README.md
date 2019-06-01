@@ -38,11 +38,28 @@ Coming soon...
 
 ## Dependencies
 
-This project is based on **Python 3.7**.
+### Server (Django)
 
-To install the project dependencies, run the following command:
+* python 3.7
 
-`pip3 install -r requirements.txt `
+To install the dependencies, run the following commands:
+
+```bash
+cd server
+pip3 install -r requirements.txt
+```
+
+### Client (Node.js)
+
+* node 12.3.1
+* npm 6.9.0
+
+To install the dependencies, run the following command:
+
+```bash
+cd client
+npm install
+```
 
 ## Links
 * [Trello Board](https://trello.com/b/kUy04psi/notebook)
