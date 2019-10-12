@@ -58,7 +58,7 @@ cd server
 pip3 install -r requirements.txt
 ```
 
-### Client (Node.js)
+### Client (React)
 
 * node 12.3.1
 * npm 6.9.0
