@@ -54,7 +54,6 @@ Coming soon...
 To install the dependencies, run the following commands:
 
 ```bash
-cd server
 pip3 install -r requirements.txt
 ```
 
