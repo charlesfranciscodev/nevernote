@@ -1,6 +1,15 @@
 # Notebook
 
-A note taking web application with a "WYSIWYG" editor, notebooks, tags, favorites, sorting and searching.
+A note taking web application.
+
+## TODO
+
+* "WYSIWYG" editor
+* notebooks
+* tags
+* favorites
+* sorting
+* searching
 
 ## Completed API Routes
 
