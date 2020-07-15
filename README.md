@@ -1,8 +1,8 @@
 # Notebook
 
-A note taking web application.
+REST API for note taking with Django
 
-## TODO
+## TODO (Frontend)
 
 * "WYSIWYG" editor
 * notebooks
@@ -43,7 +43,7 @@ A note taking web application.
 
 ## Completed User Stories
 
-Coming soon...
+TODO...
 
 ## Dependencies
 
